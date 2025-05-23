@@ -1,0 +1,251 @@
+
+Setting environment for using XAMPP for Windows.
+int@LAB204-WSINT c:\users\int\documents\xampp
+# cd mysql/bin
+
+int@LAB204-WSINT c:\Users\Int\Documents\xampp\mysql\bin
+# mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 10
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| 360shop            |
+| drive              |
+| information_schema |
+| laravel10_crud     |
+| mydatabase         |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| rentacar           |
+| sqlinjection       |
+| student            |
+| subquery           |
+| test               |
++--------------------+
+13 rows in set (0.001 sec)
+
+MariaDB [(none)]> use drive;
+Database changed
+MariaDB [drive]> show tables;
++-----------------+
+| Tables_in_drive |
++-----------------+
+| staff           |
++-----------------+
+1 row in set (0.001 sec)
+
+MariaDB [drive]> desc staff;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| id          | bigint(20)  | YES  |     | NULL    |       |
+| staff_name  | varchar(30) | YES  |     | NULL    |       |
+| salary      | int(11)     | YES  |     | NULL    |       |
+| staff_email | varchar(50) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.030 sec)
+
+MariaDB [drive]> show columns from staff;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| id          | bigint(20)  | YES  |     | NULL    |       |
+| staff_name  | varchar(30) | YES  |     | NULL    |       |
+| salary      | int(11)     | YES  |     | NULL    |       |
+| staff_email | varchar(50) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.020 sec)
+
+MariaDB [drive]> INSERT INTO staff (id,staff_name,salary,staff_email) VALUES
+    -> (101,"Habib",1000,"habib@gmail.com");
+Query OK, 1 row affected (0.010 sec)
+
+MariaDB [drive]> INSERT INTO staff (id,staff_name,salary,staff_email) VALUES
+    -> (102,"Hunain",2000,"hunain@gmail.com"),
+    -> (103,"Ali",3000,"ali@gmail.com"),
+    -> (104,"Muhammad",4000,"muhammad@gmail.com"),
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 4
+MariaDB [drive]> INSERT INTO staff (id,staff_name,salary,staff_email) VALUES
+    -> (102,"Hunain",2000,"hunain@gmail.com"),
+    -> (103,"Ali",3000,"ali@gmail.com"),
+    -> (104,"Muhammad",4000,"muhammad@gmail.com"),
+    -> (102,"Hunain",2000,"hunain@gmail.com"),;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 5
+MariaDB [drive]> INSERT INTO staff (id,staff_name,salary,staff_email) VALUES
+    -> (102,"Hunain",2000,"hunain@gmail.com"),
+    -> (103,"Ali",3000,"ali@gmail.com"),
+    -> (104,"Muhammad",4000,"muhammad@gmail.com")
+    -> ;
+Query OK, 3 rows affected (0.002 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [drive]> SELECT id,staff_name FROM staff;
++------+------------+
+| id   | staff_name |
++------+------------+
+|  101 | Habib      |
+|  102 | Hunain     |
+|  103 | Ali        |
+|  104 | Muhammad   |
++------+------------+
+4 rows in set (0.000 sec)
+
+MariaDB [drive]> SELECT id FROM staff;
++------+
+| id   |
++------+
+|  101 |
+|  102 |
+|  103 |
+|  104 |
++------+
+4 rows in set (0.000 sec)
+
+MariaDB [drive]> SELECT * FROM staff;
++------+------------+--------+--------------------+
+| id   | staff_name | salary | staff_email        |
++------+------------+--------+--------------------+
+|  101 | Habib      |   1000 | habib@gmail.com    |
+|  102 | Hunain     |   2000 | hunain@gmail.com   |
+|  103 | Ali        |   3000 | ali@gmail.com      |
+|  104 | Muhammad   |   4000 | muhammad@gmail.com |
++------+------------+--------+--------------------+
+4 rows in set (0.000 sec)
+
+MariaDB [drive]> desc staff;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| id          | bigint(20)  | YES  |     | NULL    |       |
+| staff_name  | varchar(30) | YES  |     | NULL    |       |
+| salary      | int(11)     | YES  |     | NULL    |       |
+| staff_email | varchar(50) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.011 sec)
+
+MariaDB [drive]> show tables;
++-----------------+
+| Tables_in_drive |
++-----------------+
+| staff           |
++-----------------+
+1 row in set (0.000 sec)
+
+MariaDB [drive]>
+MariaDB [drive]> DELETE FROM staff;
+Query OK, 4 rows affected (0.010 sec)
+
+MariaDB [drive]> SELECT * FROM staff;
+Empty set (0.000 sec)
+
+MariaDB [drive]> INSERT INTO staff (id,staff_name,salary,staff_email) VALUES
+    -> (101,"Habib",1000,"habib@gmail.com"),
+    -> (102,"Hunain",2000,"hunain@gmail.com"),
+    -> (103,"Ali",3000,"ali@gmail.com"),
+    -> (104,"Muhammad",4000,"muhammad@gmail.com")
+    -> ;
+Query OK, 4 rows affected (0.010 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [drive]> SELECT * FROM staff;
++------+------------+--------+--------------------+
+| id   | staff_name | salary | staff_email        |
++------+------------+--------+--------------------+
+|  101 | Habib      |   1000 | habib@gmail.com    |
+|  102 | Hunain     |   2000 | hunain@gmail.com   |
+|  103 | Ali        |   3000 | ali@gmail.com      |
+|  104 | Muhammad   |   4000 | muhammad@gmail.com |
++------+------------+--------+--------------------+
+4 rows in set (0.000 sec)
+
+MariaDB [drive]> DELETE FROM staff WHERE id = 101;
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [drive]> SELECT * FROM staff;
++------+------------+--------+--------------------+
+| id   | staff_name | salary | staff_email        |
++------+------------+--------+--------------------+
+|  102 | Hunain     |   2000 | hunain@gmail.com   |
+|  103 | Ali        |   3000 | ali@gmail.com      |
+|  104 | Muhammad   |   4000 | muhammad@gmail.com |
++------+------------+--------+--------------------+
+3 rows in set (0.000 sec)
+
+MariaDB [drive]> INSERT INTO staff (id,staff_name,salary,staff_email) VALUES
+    -> (101,"Habib",1000,"habib@gmail.com");
+Query OK, 1 row affected (0.010 sec)
+
+MariaDB [drive]> SELECT * FROM staff;
++------+------------+--------+--------------------+
+| id   | staff_name | salary | staff_email        |
++------+------------+--------+--------------------+
+|  102 | Hunain     |   2000 | hunain@gmail.com   |
+|  103 | Ali        |   3000 | ali@gmail.com      |
+|  104 | Muhammad   |   4000 | muhammad@gmail.com |
+|  101 | Habib      |   1000 | habib@gmail.com    |
++------+------------+--------+--------------------+
+4 rows in set (0.000 sec)
+
+MariaDB [drive]> DELETE FROM staff WHERE id = 102;
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [drive]> SELECT * FROM staff;
++------+------------+--------+--------------------+
+| id   | staff_name | salary | staff_email        |
++------+------------+--------+--------------------+
+|  103 | Ali        |   3000 | ali@gmail.com      |
+|  104 | Muhammad   |   4000 | muhammad@gmail.com |
+|  101 | Habib      |   1000 | habib@gmail.com    |
++------+------------+--------+--------------------+
+3 rows in set (0.000 sec)
+
+MariaDB [drive]> DELETE FROM staff WHERE staff_name = "Ali";
+Query OK, 1 row affected (0.010 sec)
+
+MariaDB [drive]> SELECT * FROM staff;
++------+------------+--------+--------------------+
+| id   | staff_name | salary | staff_email        |
++------+------------+--------+--------------------+
+|  104 | Muhammad   |   4000 | muhammad@gmail.com |
+|  101 | Habib      |   1000 | habib@gmail.com    |
++------+------------+--------+--------------------+
+2 rows in set (0.000 sec)
+
+MariaDB [drive]> UPDATE staff SET staff_name = "Ahsan" , staff_email = "ahsan@gmail.com" , salary = 1;
+Query OK, 2 rows affected (0.003 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+MariaDB [drive]> SELECT * FROM staff;
++------+------------+--------+-----------------+
+| id   | staff_name | salary | staff_email     |
++------+------------+--------+-----------------+
+|  104 | Ahsan      |      1 | ahsan@gmail.com |
+|  101 | Ahsan      |      1 | ahsan@gmail.com |
++------+------------+--------+-----------------+
+2 rows in set (0.000 sec)
+
+MariaDB [drive]> UPDATE staff SET staff_name = "Ali" , staff_email = "ali@gmail.com" , salary = 5000
+    -> WHERE id = 104;
+Query OK, 1 row affected (0.010 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [drive]> SELECT * FROM staff;
++------+------------+--------+-----------------+
+| id   | staff_name | salary | staff_email     |
++------+------------+--------+-----------------+
+|  104 | Ali        |   5000 | ali@gmail.com   |
+|  101 | Ahsan      |      1 | ahsan@gmail.com |
++------+------------+--------+-----------------+
+2 rows in set (0.000 sec)
+
+MariaDB [drive]>
